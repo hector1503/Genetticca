@@ -519,7 +519,6 @@ GameObject:
   - component: {fileID: 2068301152}
   - component: {fileID: 2068301151}
   - component: {fileID: 2068301157}
-  - component: {fileID: 2068301154}
   m_Layer: 0
   m_Name: Prota
   m_TagString: Untagged
@@ -538,14 +537,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4ad37ab56fb0c046bb496472118b20f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GRAVITY_CONSTANT: 0.4
+  GRAVITY_CONSTANT: 30
   multiplierGravityOnJump: 0.5
-  timeJumpUp: 0.4
-  jumpInitialHeight: 5
-  speed: 2
-  dashAccelerateMultiplier: 10
+  timeJumpUp: 0.5
+  jumpInitialHeight: 3.5
+  speed: 3
+  dashAccelerateMultiplier: 3
   timeDashAccelerate: 0.3
   timeBetweenDash: 1
+  numDashInAir: 1
 --- !u!114 &2068301152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -591,25 +591,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &2068301154
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2068301150}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4ad37ab56fb0c046bb496472118b20f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GRAVITY_CONSTANT: 0.45
-  multiplierGravityOnJump: 0.5
-  timeJumpUp: 0.5
-  jumpInitialHeight: 5
-  speed: 3
-  dashAccelerateMultiplier: 10
-  timeDashAccelerate: 0.15
-  timeBetweenDash: 1
 --- !u!33 &2068301155
 MeshFilter:
   m_ObjectHideFlags: 0

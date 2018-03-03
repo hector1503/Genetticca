@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour {
 	public float dashAccelerateMultiplier=2F;
 	public double timeDashAccelerate = 0.3D;
 	public double timeBetweenDash = 1D;
+	public int numDashInAir = 1;
 //	public float dashDecelerateMultiplayer = 0.2F;
 //	public double timeDashDecelerate = 0.06D;
 
@@ -35,7 +36,8 @@ public class PlayerController : MonoBehaviour {
 	double m_timeStartJump;
 
 	double m_timeStartDashAccelerate;
-	bool m_canDash;
+	bool m_isDashing;
+	int m_currentNumDashes;
 
 
 
@@ -53,18 +55,22 @@ public class PlayerController : MonoBehaviour {
 		m_is3rdAxisInUseR = false;
 
 		m_timeStartDashAccelerate = -1;
-		m_canDash = true;
+		m_isDashing = false;
+		m_currentNumDashes = 0;
 	}
 	
 	void FixedUpdate ()
 	{
 		getInputControls ();
-
+		if (m_myCharacterC.isGrounded) {
+			m_currentNumDashes = numDashInAir;
+		}
 		//SALTO
 		if (m_myCharacterC.isGrounded && Input.GetButton("Jump")) {
 			m_move.y = jumpInitialHeight * Time.deltaTime;
 			m_currentGravity = GRAVITY_CONSTANT;
 			m_timeStartJump = Time.time;
+			m_currentNumDashes = numDashInAir;
 			Debug.Log("JUMP");
 		
 		} else {
@@ -86,8 +92,8 @@ public class PlayerController : MonoBehaviour {
 				m_move.x = 0;
 		}
 
+		m_move.y -= m_currentGravity/200 * Time.deltaTime;
 		dash ();
-
 		m_myCharacterC.Move (m_move);
 
 	}
@@ -97,10 +103,11 @@ public class PlayerController : MonoBehaviour {
 	{
 		m_inputMove = new Vector3 (Input.GetAxis ("Horizontal"), Input.GetAxis ("Jump"), 0);
 
-		if (m_canDash) {
+		if (!m_isDashing && m_currentNumDashes > 0) {
 			getThirdAxis ();
 		}
 	}
+
 
 	void getThirdAxis()
 	{
@@ -121,10 +128,11 @@ public class PlayerController : MonoBehaviour {
 	{
 		
 		//inicio Dash
-		if (m_is3rdAxisInUseR) {
+		if (m_is3rdAxisInUseR ) {
 			if (m_timeStartDashAccelerate == -1) {
 				m_timeStartDashAccelerate = Time.time;
-				m_canDash = false;
+				m_isDashing = true;
+				m_currentNumDashes--;
 			} 
 			//en medio del dash
 			timeDiferencia = Time.time - m_timeStartDashAccelerate;
@@ -133,22 +141,18 @@ public class PlayerController : MonoBehaviour {
 				if (Time.time - m_timeStartDashAccelerate < timeDashAccelerate) {
 					m_move.x = m_direction * speed * dashAccelerateMultiplier * Time.deltaTime;
 					m_move.y = 0;
+					m_currentGravity = GRAVITY_CONSTANT;
 				} else {
 					//fin del dash
-					if (Time.time - m_timeStartDashAccelerate >= timeDashAccelerate)
-						m_currentGravity = GRAVITY_CONSTANT;
-					m_move.x = m_direction * speed * Time.deltaTime;
-					m_move.y -= m_currentGravity / 2 * Time.deltaTime;
+					//m_move.x = m_direction * speed * Time.deltaTime;
 					if (Time.time - m_timeStartDashAccelerate > timeBetweenDash) {
 						m_is3rdAxisInUseR = false;
 						m_timeStartDashAccelerate = -1;
-						m_canDash = true;
+						m_isDashing = false;
 					}
 				}
 			}
-		} else {
-			m_move.y -= m_currentGravity / 2 * Time.deltaTime;
-		}
+		} 
 	}
 
 }
