@@ -2,14 +2,13 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\01_Scripts\PlayerController.cs">
     <Files>
-      <File FileName="Assets\01_Scripts\PlayerController.cs" Line="72" Column="1" />
+      <File FileName="Assets\01_Scripts\PlayerController.cs" Line="102" Column="25" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="G:\UNITY_PROJECTS\Genetticca\Genetticca\Assets\01_Scripts\PlayerController.cs" line="65" column="1" />
-      <Breakpoint file="G:\UNITY_PROJECTS\Genetticca\Genetticca\Assets\01_Scripts\PlayerController.cs" line="134" column="1" />
-      <Breakpoint file="G:\UNITY_PROJECTS\Genetticca\Genetticca\Assets\01_Scripts\PlayerController.cs" line="72" column="1" />
+      <Breakpoint file="G:\UNITY_PROJECTS\Genetticca\Genetticca\Assets\01_Scripts\PlayerController.cs" line="79" column="1" />
+      <Breakpoint file="G:\UNITY_PROJECTS\Genetticca\Genetticca\Assets\01_Scripts\PlayerController.cs" line="97" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
