@@ -724,8 +724,9 @@ MonoBehaviour:
   multiplierGravityOnJump: 0.5
   timeJumpUp: 0.5
   jumpInitialHeight: 5
+  climbForce: 4
   timeBetweenJumpWall: 0.75
-  wallSlideMaxSpeed: -0.02
+  wallSlideMaxSpeed: -1
   speed: 3
   dashAccelerateMultiplier: 3
   timeDashAccelerate: 0.3
