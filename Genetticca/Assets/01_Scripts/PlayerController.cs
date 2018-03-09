@@ -8,10 +8,12 @@ public class PlayerController : MonoBehaviour {
 	public float GRAVITY_CONSTANT = 20F;
 	public float multiplierGravityOnJump = 0.5F;
 	public double timeJumpUp = 0.4D;
-	public float jumpInitialHeight = 3.5F; 
+	public float jumpInitialHeight = 3.5F;
+	public float climbForce = 4F;
 
-
-	[Header("Configuración movimiento")]	
+	public double timeBetweenJumpWall = 0.75D;
+	public float wallSlideMaxSpeed = -3F;
+	[Header("Configuración movimiento")]
 	public float speed = 3.5F;
 
 	[Header("Configuración dash")]	
@@ -34,10 +36,14 @@ public class PlayerController : MonoBehaviour {
 
 	float m_currentGravity;
 	double m_timeStartJump;
+	double m_timeStartJumpWall;
 
 	double m_timeStartDashAccelerate;
 	bool m_isDashing;
+	bool m_isSliding;
+	float m_slideDirection;
 	int m_currentNumDashes;
+	bool m_isLastTimeGrounded;
 
 
 
@@ -47,31 +53,36 @@ public class PlayerController : MonoBehaviour {
 	void Start ()
 	{
 		m_myCharacterC = GetComponentInChildren<CharacterController> ();
+		GRAVITY_CONSTANT /= 200;
 		m_currentGravity = GRAVITY_CONSTANT;
 		m_inputMove = Vector3.zero;
 		m_input3rdAxis = 0F;
 		m_move = Vector3.zero;
 		m_timeStartJump = 0D;
+		m_timeStartJumpWall = 0D;
 		m_is3rdAxisInUseR = false;
-
-		m_timeStartDashAccelerate = -1;
+		m_slideDirection = 1F;
+		m_timeStartDashAccelerate = -1D;
 		m_isDashing = false;
 		m_currentNumDashes = 0;
+		m_isLastTimeGrounded = false;
+
 	}
 	
 	void FixedUpdate ()
 	{
+		m_isSliding = false;
+		//TODO MVO: No me gusta esta comparacion pq puede que collisione con otras cosas que no sean suelo. 
+		//Deberia controllarse desde OnControllerColliderHit pero no lo he conseguido.
+		if ((m_myCharacterC.collisionFlags & CollisionFlags.Sides) != 0)
+			m_isSliding = true;
 		getInputControls ();
 		if (m_myCharacterC.isGrounded) {
 			m_currentNumDashes = numDashInAir;
 		}
 		//SALTO
 		if (m_myCharacterC.isGrounded && Input.GetButton("Jump")) {
-			m_move.y = jumpInitialHeight * Time.deltaTime;
-			m_currentGravity = GRAVITY_CONSTANT;
-			m_timeStartJump = Time.time;
-			m_currentNumDashes = numDashInAir;
-			Debug.Log("JUMP");
+			jump ();
 		
 		} else {
 			
@@ -83,22 +94,26 @@ public class PlayerController : MonoBehaviour {
 			}
 		}
 
+		//MOVE
+		if (Mathf.Abs (m_inputMove.x) > 0.1F ) {
+			m_direction = Mathf.Sign(m_inputMove.x);
+			if(!m_isSliding ||(m_isSliding && m_direction!= m_slideDirection))
+				m_move.x = speed * m_direction;
 
-		if (Mathf.Abs (m_inputMove.x) > 0.1F) {
-			m_direction = m_inputMove.x /Mathf.Abs (m_inputMove.x);
-			m_move.x = speed * m_direction * Time.deltaTime ;
 		} else {
 			if (m_myCharacterC.isGrounded)
 				m_move.x = 0;
 		}
+		if(!m_myCharacterC.isGrounded)
+			m_move.y -= m_currentGravity;
 
-		m_move.y -= m_currentGravity/200 * Time.deltaTime;
 		dash ();
-		m_myCharacterC.Move (m_move);
+		m_myCharacterC.Move (m_move * Time.deltaTime);
+
 
 	}
 
-
+	//CONTROLES
 	void getInputControls()
 	{
 		m_inputMove = new Vector3 (Input.GetAxis ("Horizontal"), Input.GetAxis ("Jump"), 0);
@@ -113,7 +128,7 @@ public class PlayerController : MonoBehaviour {
 	{
 		m_input3rdAxis = Input.GetAxis ("Fire2");
 
-		if (m_input3rdAxis > 0) {
+		if (m_input3rdAxis == 1) {
 			if (m_is3rdAxisInUseR == false) {
 				m_is3rdAxisInUseR = true;
 			}
@@ -123,31 +138,35 @@ public class PlayerController : MonoBehaviour {
 		}
 	  
 	}
-
+	//MECANICAS
 	void dash()
 	{
 		
 		//inicio Dash
 		if (m_is3rdAxisInUseR ) {
-			if (m_timeStartDashAccelerate == -1) {
+			if (m_timeStartDashAccelerate == -1D) {
 				m_timeStartDashAccelerate = Time.time;
 				m_isDashing = true;
 				m_currentNumDashes--;
+
+				if (m_isSliding)
+					m_direction = m_slideDirection;
 			} 
 			//en medio del dash
 			timeDiferencia = Time.time - m_timeStartDashAccelerate;
 
-			if (m_timeStartDashAccelerate != -1) {
+			if (m_timeStartDashAccelerate != -1D) {
 				if (Time.time - m_timeStartDashAccelerate < timeDashAccelerate) {
-					m_move.x = m_direction * speed * dashAccelerateMultiplier * Time.deltaTime;
+					m_move.x = m_direction * speed * dashAccelerateMultiplier;
 					m_move.y = 0;
 					m_currentGravity = GRAVITY_CONSTANT;
 				} else {
 					//fin del dash
-					//m_move.x = m_direction * speed * Time.deltaTime;
+					if(!m_myCharacterC.isGrounded)
+						m_move.x = m_direction * speed;
 					if (Time.time - m_timeStartDashAccelerate > timeBetweenDash) {
 						m_is3rdAxisInUseR = false;
-						m_timeStartDashAccelerate = -1;
+						m_timeStartDashAccelerate = -1D;
 						m_isDashing = false;
 					}
 				}
@@ -155,7 +174,58 @@ public class PlayerController : MonoBehaviour {
 		} 
 	}
 
+	void jump()
+	{
+		m_move.y = jumpInitialHeight;
+		if (m_isSliding && Mathf.Sign (m_inputMove.x) != m_slideDirection)
+			m_move.y = climbForce;
+
+		m_is3rdAxisInUseR = false;
+		m_timeStartDashAccelerate = -1D;
+		m_isDashing = false;		m_currentGravity = GRAVITY_CONSTANT;
+		m_timeStartJump = Time.time;
+		m_currentNumDashes = numDashInAir;
+		m_isLastTimeGrounded = false;
+
+		Debug.Log("JUMP");
+	}
+
+	private void OnControllerColliderHit(ControllerColliderHit hit)
+	{
+		if (!m_myCharacterC.isGrounded && hit.normal.y < 0.1F && m_myCharacterC.velocity.y<0) 
+		{
+			m_isSliding = true;
+			m_slideDirection = hit.normal.x;
+			if (m_move.y < wallSlideMaxSpeed)
+				m_move.y = wallSlideMaxSpeed;
+			if (Input.GetButton("Jump") && Time.time-m_timeStartJumpWall>timeBetweenJumpWall) {
+				m_direction = m_slideDirection;
+				if (Mathf.Sign (m_inputMove.x) != m_slideDirection)
+					m_move.x = 0;
+				else
+					m_move.x = m_direction * speed;
+				m_timeStartJumpWall= Time.time;
+				jump ();
+			}
+			if (m_is3rdAxisInUseR && !m_isDashing) {
+				m_direction = m_slideDirection;
+				dash ();
+			}
+				
+
+		}
+		if (m_myCharacterC.isGrounded && !m_isLastTimeGrounded) {
+			m_isLastTimeGrounded = true;
+			m_timeStartJump= 0D;
+			m_is3rdAxisInUseR = false;
+			m_timeStartDashAccelerate = -1D;
+			m_isDashing = false;			m_timeStartJumpWall = 0D;
+			m_currentGravity = GRAVITY_CONSTANT;
+			m_currentNumDashes = numDashInAir;
+		}
+	}
+
 }
 //TODO MV MEJORAS:
 //- Idea arq. pasar todo a maquina de estados (ej. https://www.youtube.com/watch?v=I0sbUsQruIs&list=PLLH3mUGkfFCV_qhwvkiUSJXpX2xDcEkWd)
-
+// Diferenciar entre salto pared i climb (con tiempos diferentes y valores diferentes)
