@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\01_Scripts\CameraFollow.cs" />
+    <Compile Include="Assets\01_Scripts\EnemyController.cs" />
     <Compile Include="Assets\01_Scripts\EnemyTurretController.cs" />
     <Compile Include="Assets\01_Scripts\PlayerController.cs" />
     <Reference Include="UnityEngine.UI">
@@ -115,9 +116,6 @@
     </Reference>
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
       <HintPath>C:\Program Files %28x86%29\Unity\Editor\Data\PlaybackEngines\windowsstandalonesupport\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
-      <HintPath>C:\Program Files %28x86%29\Microsoft Visual Studio Tools for Unity\15.0\Editor\SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Advertisements">
       <HintPath>C:\Users\Hector\AppData\LocalLow\Unity\cache\packages\packages.unity.com\com.unity.ads%402.0.3\UnityEngine.Advertisements.dll</HintPath>
