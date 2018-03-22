@@ -412,6 +412,10 @@ Prefab:
       propertyPath: player
       value: 
       objectReference: {fileID: 2068301156}
+    - target: {fileID: 1508485051481720, guid: e72e71e9a389af4478e3703bf3942bfb, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e72e71e9a389af4478e3703bf3942bfb, type: 2}
   m_IsPrefabParent: 0
@@ -625,6 +629,15 @@ Prefab:
       propertyPath: Player
       value: 
       objectReference: {fileID: 2068301156}
+    - target: {fileID: 1027709996220078, guid: 5170261ff18160444b9e53a06f434b29, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 54833668330223322, guid: 5170261ff18160444b9e53a06f434b29,
+        type: 2}
+      propertyPath: m_Constraints
+      value: 12
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5170261ff18160444b9e53a06f434b29, type: 2}
   m_IsPrefabParent: 0
@@ -794,7 +807,6 @@ GameObject:
   - component: {fileID: 2068301155}
   - component: {fileID: 2068301153}
   - component: {fileID: 2068301152}
-  - component: {fileID: 2068301151}
   - component: {fileID: 2068301157}
   m_Layer: 0
   m_Name: Prota
@@ -803,7 +815,7 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2068301151
+--- !u!114 &2068301152
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -823,29 +835,6 @@ MonoBehaviour:
   wallSlideMaxSpeed: -1
   speed: 3
   dashAccelerateMultiplier: 3
-  timeDashAccelerate: 0.3
-  timeBetweenDash: 1
-  numDashInAir: 1
---- !u!114 &2068301152
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2068301150}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4ad37ab56fb0c046bb496472118b20f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GRAVITY_CONSTANT: 20
-  multiplierGravityOnJump: 0.5
-  timeJumpUp: 0.4
-  jumpInitialHeight: 3.5
-  climbForce: 4
-  timeBetweenJumpWall: 0.75
-  wallSlideMaxSpeed: -3
-  speed: 3.5
-  dashAccelerateMultiplier: 2
   timeDashAccelerate: 0.3
   timeBetweenDash: 1
   numDashInAir: 1
