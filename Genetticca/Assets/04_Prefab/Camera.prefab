@@ -97,8 +97,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6127c2621a311844f99ba6d918e82ab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  player: {fileID: 0}
   smoothing: 5
+  maxSpeed: 10
+  scrollMultiplier: 1.4
+  movementWindowSize: {x: 2, y: 2}
+  windowOffset: {x: 0, y: 0}
+  limitCameraMovement: 0
+  limitLeft: 0
+  limitRight: 0
+  limitBottom: 0
+  limitTop: 0
+  showDebugBoxes: 0
+  activeTracking: 1
 --- !u!124 &124036003333710716
 Behaviour:
   m_ObjectHideFlags: 1
