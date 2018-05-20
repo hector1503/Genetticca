@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class enemyDamage : MonoBehaviour
 {
-	public float damage;
+	/*public float damage;
 	public float damageRate;
 	public float pushBackForce;
 
@@ -94,5 +94,5 @@ public class enemyDamage : MonoBehaviour
 			myPlayerController.AddImpact (pushDirection,pushBackForce);
 		}
 
-	}
+	}*/
 }

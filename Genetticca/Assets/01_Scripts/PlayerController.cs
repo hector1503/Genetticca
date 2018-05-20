@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour {
 	public double timeDashAccelerate = 0.3D;
 	public double timeBetweenDash = 1D;
 	public int numDashInAir = 1;
+	public float damageDist = -5.0f;
 //	public float dashDecelerateMultiplayer = 0.2F;
 //	public double timeDashDecelerate = 0.06D;
 
@@ -223,6 +224,15 @@ public class PlayerController : MonoBehaviour {
 			m_currentGravity = GRAVITY_CONSTANT;
 			m_currentNumDashes = numDashInAir;
 		}
+	}
+
+	public void getDamage()
+	{
+		//Destroy (gameObject);
+		m_move.x = damageDist;
+		m_move.y = 0;
+
+		m_myCharacterC.Move (m_move * Time.deltaTime);
 	}
 
 }

@@ -11,6 +11,7 @@ public class EnemyController : MonoBehaviour {
 	public float StartDist = 4.0f;
 	public float StopDist = 0.5f;
 	public int MaxEnemies = 3;
+	private PlayerController playerController;
 
 
 
@@ -45,4 +46,12 @@ public class EnemyController : MonoBehaviour {
 		}
 	}	
 
+	void OnCollisionEnter (Collision col)
+	{
+		if(col.gameObject.name == "Prota")
+		{
+			//Destroy(col.gameObject);
+			col.gameObject.GetComponent<PlayerController> ().getDamage();
+		}
+	}
 }

@@ -54,7 +54,10 @@
      <Compile Include="Assets\01_Scripts\CameraFollow.cs" />
      <Compile Include="Assets\01_Scripts\EnemyController.cs" />
      <Compile Include="Assets\01_Scripts\EnemyTurretController.cs" />
+     <Compile Include="Assets\01_Scripts\old\enemyDamage.cs" />
+     <Compile Include="Assets\01_Scripts\old\playerHealth.cs" />
      <Compile Include="Assets\01_Scripts\PlayerController.cs" />
+     <Compile Include="Assets\01_Scripts\ProjectileController.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

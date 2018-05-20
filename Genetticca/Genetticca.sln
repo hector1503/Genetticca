@@ -1,7 +1,7 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Genetticca", "Genetticca.csproj", "{2E5A8108-41F8-B570-BCCA-3D08407DA6AF}"
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Genetticca", "Assembly-CSharp.csproj", "{360F21F3-F462-3EC5-D875-6EAF42E0759A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,12 +9,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2E5A8108-41F8-B570-BCCA-3D08407DA6AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2E5A8108-41F8-B570-BCCA-3D08407DA6AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2E5A8108-41F8-B570-BCCA-3D08407DA6AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2E5A8108-41F8-B570-BCCA-3D08407DA6AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{360F21F3-F462-3EC5-D875-6EAF42E0759A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{360F21F3-F462-3EC5-D875-6EAF42E0759A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{360F21F3-F462-3EC5-D875-6EAF42E0759A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{360F21F3-F462-3EC5-D875-6EAF42E0759A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
 	EndGlobalSection
 EndGlobal

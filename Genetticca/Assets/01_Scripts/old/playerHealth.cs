@@ -6,7 +6,7 @@ public class playerHealth : MonoBehaviour
 {
 
 
-	public float fullHealth;
+	/*public float fullHealth;
 	float currentHealth;
 	public GameObject deathFx;
 	GameObject thePlayer;
@@ -83,5 +83,5 @@ public class playerHealth : MonoBehaviour
 
 	public float getPlayerHealth(){
 		return currentHealth;
-	}
+	}*/
 }
