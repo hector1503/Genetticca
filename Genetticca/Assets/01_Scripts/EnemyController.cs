@@ -10,6 +10,7 @@ public class EnemyController : MonoBehaviour {
 	public float DivisionDist = 2.0f;
 	public float StartDist = 4.0f;
 	public float StopDist = 0.5f;
+	public float DivisionSpawnSpeed = 2000.0f;
 	public int MaxEnemies = 3;
 	private PlayerController playerController;
 
@@ -42,9 +43,17 @@ public class EnemyController : MonoBehaviour {
 	{
 		if (GameObject.FindGameObjectsWithTag("Enemy").Length < MaxEnemies)
 		{
-			Instantiate(DivisionSpawn);
+			CreateDivision ();
 		}
 	}	
+
+	void CreateDivision()
+	{
+		Instantiate(DivisionSpawn); //Si se hace el lock de la posicion y no hace parabola.
+		//DivisionSpawn.GetComponent<Rigidbody>().AddForce(transform.up*DivisionSpawnSpeed, ForceMode.Impulse);
+		//DivisionSpawn.GetComponent<Rigidbody>().velocity = transform.forward * DivisionSpawnSpeed;
+		//DivisionSpawn.GetComponent<Rigidbody>().velocity = transform.up * DivisionSpawnSpeed;
+	}
 
 	void OnCollisionEnter (Collision col)
 	{
