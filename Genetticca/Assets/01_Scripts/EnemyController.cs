@@ -57,7 +57,7 @@ public class EnemyController : MonoBehaviour {
 
 	void OnCollisionEnter (Collision col)
 	{
-		if(col.gameObject.name == "Prota")
+		if(col.gameObject.tag == "Player")
 		{
 			//Destroy(col.gameObject);
 			col.gameObject.GetComponent<PlayerController> ().getDamage();
