@@ -13,14 +13,12 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectGenerator>VSTU</UnityProjectGenerator>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>2017.4.0f1</UnityVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <LangVersion>4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -237,15 +235,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\01_Scripts\Actors\Attack.cs" />
-    <Compile Include="Assets\01_Scripts\Actors\EnemyController.cs" />
-    <Compile Include="Assets\01_Scripts\Actors\EnemyTurretAIController.cs" />
     <Compile Include="Assets\01_Scripts\Actors\DamageController.cs" />
+    <Compile Include="Assets\01_Scripts\Actors\EnemyController.cs" />
+    <Compile Include="Assets\01_Scripts\Actors\EnemyPatrolAIController.cs" />
+    <Compile Include="Assets\01_Scripts\Actors\EnemyTurretAIController.cs" />
     <Compile Include="Assets\01_Scripts\Actors\LifeController.cs" />
     <Compile Include="Assets\01_Scripts\Actors\PlayerController.cs" />
     <Compile Include="Assets\01_Scripts\Actors\ShooterController.cs" />
     <Compile Include="Assets\01_Scripts\Props\DestroyMe.cs" />
     <Compile Include="Assets\01_Scripts\Props\ProjectileController.cs" />
+    <Compile Include="Assets\01_Scripts\Props\SwordController.cs" />
     <Compile Include="Assets\01_Scripts\System\CameraFollow.cs" />
     <Compile Include="Assets\01_Scripts\System\ConditionalHideAttribute.cs" />
     <Compile Include="Assets\01_Scripts\System\ConditionalHidePropertyDrawer.cs" />
@@ -254,11 +253,18 @@
     <Compile Include="Assets\01_Scripts\System\TagSelectorPropertyDrawer.cs" />
     <Compile Include="Assets\01_Scripts\z_old\enemyDamage.cs" />
     <Compile Include="Assets\01_Scripts\z_old\playerHealth.cs" />
-    <Compile Include="Assets\02_Models\Actors\Ability.cs" />
-    <Compile Include="Assets\02_Models\Props\bullets\Bullet.cs" />
-    <Compile Include="Assets\02_Models\Props\bullets\BurstOfBullets.cs" />
-    <Compile Include="Assets\02_Models\Props\bullets\ProjectileAbility.cs" />
-    <Compile Include="Assets\02_Models\Props\bullets\ProjectileShootTriggerable.cs" />
+    <Compile Include="Assets\02_ModelsData\Attack.cs" />
+    <Compile Include="Assets\02_ModelsData\Props\Abilities\Ability.cs" />
+    <Compile Include="Assets\02_ModelsData\Props\Abilities\PatrolAbility.cs" />
+    <Compile Include="Assets\02_ModelsData\Props\Abilities\PatrolTriggerable.cs" />
+    <Compile Include="Assets\02_ModelsData\Props\Abilities\ProjectileAbility.cs" />
+    <Compile Include="Assets\02_ModelsData\Props\Abilities\ProjectileShootTriggerable.cs" />
+    <Compile Include="Assets\02_ModelsData\Props\Abilities\SwordAbility.cs" />
+    <Compile Include="Assets\02_ModelsData\Props\Abilities\SwordTriggerable.cs" />
+    <Compile Include="Assets\02_ModelsData\Props\bullets\Bullet.cs" />
+    <Compile Include="Assets\02_ModelsData\Props\bullets\BurstOfBullets.cs" />
+    <Compile Include="Assets\02_ModelsData\Props\patrol\Patrol.cs" />
+    <Compile Include="Assets\02_ModelsData\Props\sword\Sword.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

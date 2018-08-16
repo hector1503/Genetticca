@@ -15,9 +15,9 @@ public class DamageController : MonoBehaviour {
 
     // Use this for initialization
     void OnEnable() {
-        material = GetComponentInChildren<Renderer>().material;
+        material = transform.root.GetComponentInChildren<Renderer>().material;
         normalColor = material.color;
-        GetComponentInChildren<Renderer>().material.color = damageColor;
+        transform.root.GetComponentInChildren<Renderer>().material.color = damageColor;
         finalTime = Time.time + timeDuration;
       
        

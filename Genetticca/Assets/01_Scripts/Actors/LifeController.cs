@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class LifeController : MonoBehaviour {
 
 
     public float fullHealth;
+    
     public float currentHealth;
     public GameObject damageFx;
 
@@ -47,7 +49,6 @@ public class LifeController : MonoBehaviour {
         if (damageFx != null)
             Instantiate(damageFx, transform.position, Quaternion.Euler(new Vector3(-90, 0, 0)));
         Destroy(gameObject);
-
     }
 
 

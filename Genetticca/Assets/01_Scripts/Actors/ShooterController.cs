@@ -59,28 +59,8 @@ public class ShooterController : MonoBehaviour
     // Disparo
     public void ShootWithDirection(Vector3 direction)
     {
-
-        //bulletPrefab.GetComponent<ProjectileController>().bulletPC = bullet;
-        
         bulletPrefab.GetComponent<ProjectileController>().bulletPC.setDirection(direction.normalized);
         MasterShoot();
-        //Es una rafaga (burst)
-        //if (burstOfBullets.numberBullets > 1)
-        //{
-        //    m_isBursting = true;
-
-        //}
-        //else//No es rafaga, solo una bala
-        //{
-        //    //bullet.projectilePrefab.GetComponent<ProjectileController>().bulletPC = bullet;
-        //    //bullet.projectilePrefab.GetComponent<ProjectileController>().bulletPC.setDirection(direction);
-        //    Instantiate(bulletPrefab, transform.position, transform.rotation, parentOfBullets.transform);
-
-        //}
-        //projectileC.direction = target.transform.position - transform.position;
-
-
-
     }
 
     // Disparo
