@@ -29,6 +29,8 @@ public class PlayerController : MonoBehaviour
     [Header("Testing")]
     public float m_directonProjectileMagnitude;
 
+	public Animator myAnim;
+
     //	public float dashDecelerateMultiplayer = 0.2F;
     //	public double timeDashDecelerate = 0.06D;
 
@@ -53,6 +55,10 @@ public class PlayerController : MonoBehaviour
     int m_currentNumDashes;
     bool m_isLastTimeGrounded;
     bool m_is3rdAxisInUseR;
+	bool isWalking;
+	bool isJumping;
+	bool isDashing;
+	bool JumpUp;
     //private ShooterController shooterC;
     private ShooterController shooterC;
     #endregion
@@ -75,8 +81,15 @@ public class PlayerController : MonoBehaviour
         m_currentNumDashes = 0;
         m_isLastTimeGrounded = false;
         swordA.Initialize(transform.root.gameObject);
-
-    }
+		isWalking = false;
+		isJumping = false;
+		isDashing = false;
+		JumpUp = false;
+		myAnim.SetBool("isWalking", isWalking);
+		myAnim.SetBool("isJumping", isJumping);
+		myAnim.SetBool("isDashing", isDashing);
+		myAnim.SetBool("JumpUp", JumpUp);
+	}
 
     void FixedUpdate()
     {
@@ -117,6 +130,7 @@ public class PlayerController : MonoBehaviour
             if(m_directionMove!=m_lastDirectionMove)
                 transform.Rotate(new Vector3 (0,180,0));
             m_lastDirectionMove = m_directionMove;
+			isWalking = true;
             if (!m_isSliding || (m_isSliding && m_directionMove != m_slideDirection))
                 m_move.x = speed * m_directionMove;
 
@@ -125,6 +139,7 @@ public class PlayerController : MonoBehaviour
         {
             if (m_myCharacterC.isGrounded)
                 m_move.x = 0;
+				isWalking = false;
         }
         if (!m_myCharacterC.isGrounded)
             m_move.y -= m_currentGravity;
@@ -148,6 +163,25 @@ public class PlayerController : MonoBehaviour
             swordA.TriggerAbility();
 
         }
+
+		//ANIMACION SALTO
+		if (!m_myCharacterC.isGrounded) {
+			isJumping = true;
+			Debug.Log("JUMPANIM");
+			if(m_move.y > 0) {
+				JumpUp = true;
+				Debug.Log("JUMPANIMUP");
+			} else if(m_move.y < 0){
+				JumpUp = false;
+				Debug.Log("JUMPANIMDOWN");
+			}
+		} else isJumping = false;
+
+		myAnim.SetBool("isWalking", isWalking);
+		myAnim.SetBool("isJumping", isJumping);
+		myAnim.SetBool("isDashing", isDashing);
+		myAnim.SetBool("JumpUp", JumpUp);
+
     }
     //CONTROLES
     #region InputControls
@@ -191,7 +225,7 @@ public class PlayerController : MonoBehaviour
     #region MECANICAS
     void dash()
     {
-
+		
         //inicio Dash
         if (m_is3rdAxisInUseR)
         {
@@ -199,6 +233,7 @@ public class PlayerController : MonoBehaviour
             {
                 m_timeStartDashAccelerate = Time.time;
                 m_isDashing = true;
+				isDashing = true;
                 m_currentNumDashes--;
 
                 if (m_isSliding)
@@ -225,6 +260,7 @@ public class PlayerController : MonoBehaviour
                         m_is3rdAxisInUseR = false;
                         m_timeStartDashAccelerate = -1D;
                         m_isDashing = false;
+						isDashing = false;
                     }
                 }
             }
