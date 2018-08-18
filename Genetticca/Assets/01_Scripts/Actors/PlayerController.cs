@@ -167,15 +167,22 @@ public class PlayerController : MonoBehaviour
 		//ANIMACION SALTO
 		if (!m_myCharacterC.isGrounded) {
 			isJumping = true;
-			Debug.Log("JUMPANIM");
+			//Debug.Log("JUMPANIM");
 			if(m_move.y > 0) {
 				JumpUp = true;
-				Debug.Log("JUMPANIMUP");
+				//Debug.Log("JUMPANIMUP");
 			} else if(m_move.y < 0){
 				JumpUp = false;
-				Debug.Log("JUMPANIMDOWN");
+				//Debug.Log("JUMPANIMDOWN");
 			}
-		} else isJumping = false;
+		} else {
+			isJumping = false;
+		}
+
+		Debug.Log("isWalking" + isWalking);
+		Debug.Log("isJumping" + isJumping);
+		Debug.Log("isDashing" + isDashing);
+		Debug.Log("JumpUp" + JumpUp);
 
 		myAnim.SetBool("isWalking", isWalking);
 		myAnim.SetBool("isJumping", isJumping);
