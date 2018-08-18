@@ -179,10 +179,10 @@ public class PlayerController : MonoBehaviour
 			isJumping = false;
 		}
 
-		Debug.Log("isWalking" + isWalking);
-		Debug.Log("isJumping" + isJumping);
-		Debug.Log("isDashing" + isDashing);
-		Debug.Log("JumpUp" + JumpUp);
+		//Debug.Log("isWalking" + isWalking);
+		//Debug.Log("isJumping" + isJumping);
+		//Debug.Log("isDashing" + isDashing);
+		//Debug.Log("JumpUp" + JumpUp);
 
 		myAnim.SetBool("isWalking", isWalking);
 		myAnim.SetBool("isJumping", isJumping);
@@ -232,7 +232,7 @@ public class PlayerController : MonoBehaviour
     #region MECANICAS
     void dash()
     {
-		
+		//isDashing = true;
         //inicio Dash
         if (m_is3rdAxisInUseR)
         {

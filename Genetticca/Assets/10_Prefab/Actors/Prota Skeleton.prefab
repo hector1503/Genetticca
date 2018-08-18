@@ -27,7 +27,7 @@ GameObject:
   - component: {fileID: 114951662961858716}
   - component: {fileID: 114256746646231700}
   m_Layer: 12
-  m_Name: Prota 2
+  m_Name: Prota Skeleton
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
