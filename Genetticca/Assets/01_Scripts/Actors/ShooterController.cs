@@ -5,14 +5,12 @@ using UnityEngine;
 public class ShooterController : MonoBehaviour
 {
 
-    // public GameObject bulletprojectilePrefab;
-    //  public float timeBetweenShoots = 2F;
+ 
 
     public BurstOfBullets burstOfBullets;
     public GameObject bulletPrefab;
     public GameObject parentOfBullets;
-    //public Bullet bullet;
-    //public float castTime = 0F;
+
 
     float m_nextShootTime;
     float m_nextBulletTime;
@@ -103,13 +101,12 @@ public class ShooterController : MonoBehaviour
             }
             else//No es rafaga, solo una bala
             {
-                //bullet.projectilePrefab.GetComponent<ProjectileController>().bulletPC = bullet;
-                //bullet.projectilePrefab.GetComponent<ProjectileController>().bulletPC.setDirection(direction);
+                
                 Instantiate(bulletPrefab, transform.position, transform.rotation, parentOfBullets.transform);
 
             }
         }
-        //projectileC.direction = target.transform.position - transform.position;
+       
     }
 
 

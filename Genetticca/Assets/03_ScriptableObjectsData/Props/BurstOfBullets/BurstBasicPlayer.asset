@@ -3,7 +3,7 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85a4977ac50342244b5553342e4a8830, type: 3}
   m_Name: BurstBasicPlayer
   m_EditorClassIdentifier: 
-  numberBullets: 4
-  timeBetweenBullets: 0.12
+  numberBullets: 1
+  timeBetweenBullets: 0.75
   timeBetweenShoots: 0.75
   castTime: 0
